@@ -1,0 +1,36 @@
+import React from 'react';
+import { connect } from "react-redux";
+import { fetchTasks } from "../redux/actions/todo";
+
+class ListTodo extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.props.fetchTasks();
+    }
+
+
+    render() {
+        console.log(this.props);
+
+        return (
+            <div>
+                { this.props.tasks.map((task, index) => (
+                    <p key={index}>{task.text}</p>
+                ))}
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = state => {
+    const { tasks } = state.todoReducer;
+
+    return { tasks };
+}
+
+const mapDispatchToProps = dispatch => ({
+    fetchTasks: () => dispatch(fetchTasks())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListTodo);
