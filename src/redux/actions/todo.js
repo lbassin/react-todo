@@ -12,3 +12,10 @@ export const fetchTasks = () => {
         payload: {}
     }
 }
+
+export const updateTask = (task) => {
+    return {
+        type: 'TASK_UPDATE',
+        payload: task
+    }
+}

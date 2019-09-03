@@ -1,5 +1,7 @@
 import React from 'react';
 import Icon from "@material-ui/core/Icon";
+import { connect } from "react-redux";
+import { updateTask } from "../redux/actions/todo";
 
 const TaskStyle = {
     border: '1px solid #000',
@@ -13,22 +15,22 @@ const TaskStyle = {
 };
 
 const CompletedStyle = {
-  color: 'red',
-  textDecoration: 'line-through'
+    color: 'red',
+    textDecoration: 'line-through'
 };
 
 class Task extends React.Component {
-
     constructor(props) {
         super(props);
 
-        this.state = {...this.props.task}
+        this.state = { ...this.props.task }
     }
 
     toggleStatus = () => {
-        this.setState({
-            completed: !this.state.completed
-        })
+        const task = { ...this.state, completed: !this.state.completed };
+        this.setState({ ...task });
+
+        this.props.update(task);
     }
 
     render() {
@@ -36,7 +38,7 @@ class Task extends React.Component {
 
         return (
             <div style={TaskStyle}>
-                <input type="checkbox" onClick={this.toggleStatus} checked={completed}/>
+                <input type="checkbox" onChange={this.toggleStatus} checked={completed}/>
                 <span style={completed ? CompletedStyle : null}>{text}</span>
                 <Icon>delete_outline</Icon>
             </div>
@@ -44,4 +46,8 @@ class Task extends React.Component {
     }
 }
 
-export default Task;
+const mapDispatchToProps = dispatch => ({
+    update: (task) => dispatch(updateTask(task))
+})
+
+export default connect(null, mapDispatchToProps)(Task);
