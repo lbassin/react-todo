@@ -14,17 +14,35 @@ class NewTodo extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { text: '' }
+        this.state = { text: '', fieldStatus: { text: false }, formValid: false }
+    }
+
+    validateField = (name, value) => {
+        let isTextValid = false;
+
+        switch (name) {
+            case 'text':
+                isTextValid = value.length > 4;
+                break;
+        }
+
+        const formValid = isTextValid;
+
+        this.setState({ fieldStatus: { text: isTextValid }, formValid })
     }
 
     handleEdit = (event) => {
         this.setState({
             text: event.target.value
-        });
+        }, () => this.validateField('text', this.state.text));
     }
 
     handleSubmit = (event) => {
         if (event.keyCode !== 13) {
+            return;
+        }
+
+        if (!this.state.formValid) {
             return;
         }
 
@@ -37,9 +55,15 @@ class NewTodo extends React.Component {
     }
 
     render() {
+        const additionalStyle = {};
+        if (this.state.text && !this.state.fieldStatus.text) {
+            additionalStyle.border = '1px solid #f00';
+        }
+
         return (
             <React.Fragment>
-                <input style={InputStyle} type="text" placeholder="What needs to be done ?"
+                <input style={{ ...InputStyle, ...additionalStyle }} type="text"
+                       placeholder="What needs to be done ?"
                        onKeyUp={this.handleEdit}
                        onKeyDown={this.handleSubmit}/>
             </React.Fragment>
