@@ -1,3 +1,5 @@
+import * as type from '../constants/todo';
+
 const initialState = {
     tasks: [
         { id: 1, text: 'Something', completed: true },
@@ -7,13 +9,13 @@ const initialState = {
 
 const reducer = function (state = initialState, action) {
     switch (action.type) {
-        case 'CREATE_TASK':
+        case type.CREATE_TASK:
             const tasks = Object.assign([], state.tasks);
             action.payload.id = tasks.length + 1;
             tasks.push(action.payload);
 
             return Object.assign({}, state, { tasks });
-        case 'TASK_UPDATE':
+        case type.UPDATE_TASK:
             const newTasks = Object.assign([], state.tasks).map(task => {
                 if (task.id !== action.payload.id) {
                     return task;
