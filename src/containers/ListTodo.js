@@ -14,8 +14,8 @@ class ListTodo extends React.Component {
     render() {
         return (
             <div>
-                { this.props.tasks.map((task, index) => (
-                    <Task task={task} key={index} />
+                {this.props.tasks.map(task => (
+                    <Task task={task} key={task.id}/>
                 ))}
             </div>
         );
@@ -24,6 +24,8 @@ class ListTodo extends React.Component {
 
 const mapStateToProps = state => {
     const { tasks } = state.todoReducer;
+
+    console.log(tasks);
 
     return { tasks };
 }
