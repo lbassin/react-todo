@@ -1,5 +1,8 @@
 const initialState = {
-    tasks: []
+    tasks: [
+        { text: 'Something', completed: true },
+        { text: 'Nothing', completed: false }
+    ]
 }
 
 const reducer = function (state = initialState, action) {
@@ -8,7 +11,7 @@ const reducer = function (state = initialState, action) {
             const tasks = Object.assign([], state.tasks);
             tasks.push(action.payload);
 
-            return Object.assign({}, state, {tasks});
+            return Object.assign({}, state, { tasks });
         default:
             return Object.assign({}, state);
     }

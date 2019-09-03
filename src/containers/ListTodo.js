@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { fetchTasks } from "../redux/actions/todo";
+import Task from "./Task";
 
 class ListTodo extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class ListTodo extends React.Component {
         return (
             <div>
                 { this.props.tasks.map((task, index) => (
-                    <p key={index}>{task.text}</p>
+                    <Task task={task} key={index} />
                 ))}
             </div>
         );
