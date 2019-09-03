@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import NewTodo from "./containers/NewTodo";
 import ListTodo from "./containers/ListTodo";
 import Footer from "./components/Footer";
+import Clock from "./components/Clock";
 
 const AppStyle = {
     width: '80%',
@@ -17,6 +18,10 @@ function App() {
             <NewTodo/>
             <ListTodo/>
             <Footer/>
+
+            <hr/>
+
+            <Clock/>
         </div>
     );
 }

@@ -1,0 +1,4 @@
+export const DATE_FETCH = 'DATE_FETCH';
+
+export const DATE_FETCH_RECEIVED = 'DATE_FETCH_RECEIVED';
+
