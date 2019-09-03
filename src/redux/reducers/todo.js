@@ -34,6 +34,8 @@ const reducer = function (state = initialState, action) {
             console.log(tasks);
 
             return Object.assign({}, state, { tasks })
+        case type.DELETE_COMPLETED:
+            return Object.assign({}, state, { tasks: state.tasks.filter(task => !task.completed) });
         default:
             return Object.assign({}, state);
     }
