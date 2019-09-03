@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createTask } from "../redux/actions/todo";
 
 const InputStyle = {
-    width: '60%',
+    width: '100%',
     padding: '8px 12px',
     display: 'block',
     margin: 'auto'

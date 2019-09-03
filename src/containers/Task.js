@@ -3,12 +3,13 @@ import Icon from "@material-ui/core/Icon";
 
 const TaskStyle = {
     border: '1px solid #000',
-    width: '60%',
+    width: '100%',
     margin: '12px auto',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    lineHeight: '32px'
+    lineHeight: '32px',
+    wordBreak: 'break-all'
 };
 
 const CompletedStyle = {
@@ -35,7 +36,7 @@ class Task extends React.Component {
 
         return (
             <div style={TaskStyle}>
-                <input type="checkbox" onClick={this.toggleStatus}/>
+                <input type="checkbox" onClick={this.toggleStatus} checked={completed}/>
                 <span style={completed ? CompletedStyle : null}>{text}</span>
                 <Icon>delete_outline</Icon>
             </div>
