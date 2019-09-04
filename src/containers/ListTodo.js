@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { fetchTasks } from "../redux/actions/todo";
 import Task from "./Task";
+import { List } from "@material-ui/core";
 
 class ListTodo extends React.Component {
     constructor(props) {
@@ -13,11 +14,11 @@ class ListTodo extends React.Component {
 
     render() {
         return (
-            <div>
+            <List>
                 {this.props.tasks.map(task => (
                     <Task task={task} key={task.id}/>
                 ))}
-            </div>
+            </List>
         );
     }
 }

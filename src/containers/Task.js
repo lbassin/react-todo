@@ -1,18 +1,9 @@
 import React from 'react';
-import Icon from "@material-ui/core/Icon";
 import { connect } from "react-redux";
 import { deleteTask, updateTask } from "../redux/actions/todo";
 
-const TaskStyle = {
-    border: '1px solid #000',
-    width: '100%',
-    margin: '12px auto',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    lineHeight: '32px',
-    wordBreak: 'break-all'
-};
+import { ListItem, ListItemIcon, ListItemText, Checkbox, ListItemSecondaryAction, IconButton } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 
 const CompletedStyle = {
     color: 'red',
@@ -41,11 +32,19 @@ class Task extends React.Component {
         const { text, completed } = this.state;
 
         return (
-            <div style={TaskStyle}>
-                <input type="checkbox" onChange={this.toggleStatus} checked={completed}/>
-                <span style={completed ? CompletedStyle : null}>{text}</span>
-                <Icon onClick={this.handleDelete}>delete_outline</Icon>
-            </div>
+            <ListItem>
+                <ListItemIcon>
+                    <Checkbox onChange={this.toggleStatus} checked={completed} edge={"start"}/>
+                </ListItemIcon>
+                <ListItemText style={completed ? CompletedStyle : null}>
+                    {text}
+                </ListItemText>
+                <ListItemSecondaryAction>
+                    <IconButton onClick={this.handleDelete}>
+                        <DeleteIcon/>
+                    </IconButton>
+                </ListItemSecondaryAction>
+            </ListItem>
         );
     }
 }

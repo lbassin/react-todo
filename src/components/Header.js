@@ -1,11 +1,18 @@
 import React from 'react';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
 const HeaderStyle = {
     textAlign: 'center'
 }
 
 const Header = () => (
-    <h1 style={HeaderStyle}>Todo</h1>
+    <AppBar position={"static"}>
+        <Toolbar>
+            <Typography color={"inherit"}>
+                Todo
+            </Typography>
+        </Toolbar>
+    </AppBar>
 )
 
 export default Header;

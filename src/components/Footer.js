@@ -2,20 +2,17 @@ import React from 'react';
 import { connect } from "react-redux";
 import { deleteCompleted } from "../redux/actions/todo";
 
-const FooterStyle = {
-    borderTop: '1px solid #000',
-    height: '32px',
-    display: 'flex',
-    justifyContent: 'space-between'
+import { Paper, Button, Typography } from '@material-ui/core';
+
+const style = {
+    Paper: {
+        padding: '12px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    }
 }
 
-const ActionStyle = {
-    display: 'inline-block'
-}
-
-const ClearStyle = {
-    cursor: 'pointer'
-}
 
 class Footer extends React.PureComponent {
     clearCompleted = () => {
@@ -26,10 +23,10 @@ class Footer extends React.PureComponent {
         const { count } = this.props;
 
         return (
-            <div style={FooterStyle}>
-                <p style={ActionStyle}>{count} {count > 1 ? 'tasks' : 'task'} left</p>
-                <p style={{ ...ActionStyle, ...ClearStyle }} onClick={this.clearCompleted}>Clear completed</p>
-            </div>
+            <Paper style={style.Paper}>
+                <Typography>{count} {count > 1 ? 'tasks' : 'task'} left</Typography>
+                <Button onClick={this.clearCompleted}>Clear completed</Button>
+            </Paper>
         );
     }
 }

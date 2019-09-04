@@ -5,24 +5,45 @@ import ListTodo from "./containers/ListTodo";
 import Footer from "./components/Footer";
 import Clock from "./components/Clock";
 
-const AppStyle = {
-    width: '80%',
-    maxWidth: '480px',
-    margin: 'auto'
+import { Grid, Paper } from "@material-ui/core";
+
+const style = {
+    Container: {
+        width: '80%',
+        margin: '12px auto',
+        maxWidth: '600px'
+    },
+    Paper: {
+        padding: '12px'
+    }
 }
 
 function App() {
     return (
-        <div style={AppStyle}>
+        <React.Fragment>
             <Header/>
-            <NewTodo/>
-            <ListTodo/>
-            <Footer/>
+            <Grid container style={style.Container}>
+                <Grid item sm={12}>
+                    <Paper style={style.Paper}>
+                        <NewTodo/>
+                    </Paper>
+                </Grid>
+
+                <Grid item sm={12}>
+                    <ListTodo/>
+                </Grid>
+
+                <Grid item sm={12}>
+                    <Footer/>
+                </Grid>
+            </Grid>
+
+
 
             <hr/>
 
             <Clock/>
-        </div>
+        </React.Fragment>
     );
 }
 

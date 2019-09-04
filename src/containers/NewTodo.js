@@ -2,12 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { createTask } from "../redux/actions/todo";
 
-const InputStyle = {
-    width: '100%',
-    padding: '8px 12px',
-    display: 'block',
-    margin: 'auto'
-};
+import { TextField } from "@material-ui/core";
 
 class NewTodo extends React.Component {
 
@@ -56,17 +51,13 @@ class NewTodo extends React.Component {
     }
 
     render() {
-        const additionalStyle = {};
-        if (this.state.text && !this.state.fieldStatus.text) {
-            additionalStyle.border = '1px solid #f00';
-        }
-
         return (
             <React.Fragment>
-                <input style={{ ...InputStyle, ...additionalStyle }} type="text"
-                       placeholder="What needs to be done ?"
-                       onKeyUp={this.handleEdit}
-                       onKeyDown={this.handleSubmit}/>
+                <TextField label="What needs to be done ?" fullWidth
+                           onKeyUp={this.handleEdit}
+                           onKeyDown={this.handleSubmit}
+                           error={this.state.text !== '' && !this.state.fieldStatus.text}
+                />
             </React.Fragment>
         )
     }
