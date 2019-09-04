@@ -52,6 +52,7 @@ class NewTodo extends React.Component {
         }
 
         this.props.createTask(task);
+        event.target.value = '';
     }
 
     render() {
