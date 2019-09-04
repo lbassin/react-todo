@@ -5,11 +5,11 @@ const HeaderStyle = {
     textAlign: 'center'
 }
 
-const Header = () => (
+const Header = ({ text = 'Todo' }) => (
     <AppBar position={"static"}>
         <Toolbar>
             <Typography color={"inherit"}>
-                Todo
+                {text}
             </Typography>
         </Toolbar>
     </AppBar>

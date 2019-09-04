@@ -5,7 +5,8 @@ const initialState = {
         { id: 1, text: 'Something', completed: true },
         { id: 2, text: 'Nothing', completed: false },
         { id: 3, text: 'Ouii', completed: false }
-    ]
+    ],
+    lastId: 3
 }
 
 const reducer = function (state = initialState, action) {
@@ -13,8 +14,10 @@ const reducer = function (state = initialState, action) {
 
     switch (action.type) {
         case type.CREATE_TASK:
+            state.lastId += 1;
+
             tasks = Object.assign([], state.tasks);
-            action.payload.id = tasks.length + 1;
+            action.payload.id = state.lastId;
             tasks.push(action.payload);
 
             return Object.assign({}, state, { tasks });
